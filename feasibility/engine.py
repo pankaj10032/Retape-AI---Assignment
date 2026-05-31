@@ -100,11 +100,6 @@ from feasibility.models import (
     round_half_up,
 )
 
-
-# ---------------------------------------------------------------------------
-# Result data structures
-# ---------------------------------------------------------------------------
-
 @dataclass
 class ScheduleRow:
     date: date
@@ -190,11 +185,6 @@ class Result:
             "schedule": [r.to_dict() for r in self.schedule] if self.schedule else None,
             "additional_funds": self.additional_funds.to_dict() if self.additional_funds else None,
         }
-
-
-# ---------------------------------------------------------------------------
-# Step 1 — Payment shape builders
-# ---------------------------------------------------------------------------
 
 def _build_even_payments(offer_total: int, k: int, rules: CreditorRules) -> Optional[List[int]]:
     """
@@ -383,10 +373,6 @@ def _build_staircase_payments(offer_total: int, k: int, rules: CreditorRules) ->
     return None
 
 
-# ---------------------------------------------------------------------------
-# Step 2 — Program fee front-loader
-# ---------------------------------------------------------------------------
-
 def _schedule_program_fee(
     cadence_dates: List[date],
     payment_amounts: List[int],          # len = k (creditor payments)
@@ -462,10 +448,6 @@ def _schedule_program_fee(
 
     return rows
 
-
-# ---------------------------------------------------------------------------
-# Step 3 — Full feasibility check (try all k values)
-# ---------------------------------------------------------------------------
 
 def _build_cadence_to_horizon(first_payment_date: date, horizon: date) -> List[date]:
     dates: List[date] = []
@@ -555,10 +537,6 @@ def _try_schedule(
 
     return None
 
-
-# ---------------------------------------------------------------------------
-# Part 2 — Minimum additional funds
-# ---------------------------------------------------------------------------
 
 def _compute_lump_sum(
     client: Client,
@@ -679,9 +657,6 @@ def _compute_monthly_increment(
     return MonthlyIncrement(amount_cents=X, num_drafts=n, within_guardrail=within, reason=reason)
 
 
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
 
 def evaluate_offer(client: Client, offer: Offer, rules: CreditorRules) -> Result:
     """

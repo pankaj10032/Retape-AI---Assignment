@@ -7,11 +7,6 @@ from datetime import date
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-
-# ---------------------------------------------------------------------------
-# Money helpers
-# ---------------------------------------------------------------------------
-
 def round_half_up(x: float) -> int:
     """
     Round a float to the nearest integer using round-half-up (0.5 always goes up).
@@ -26,10 +21,6 @@ def round_half_up(x: float) -> int:
     """
     return math.floor(x + 0.5)
 
-
-# ---------------------------------------------------------------------------
-# Date / cadence helpers
-# ---------------------------------------------------------------------------
 
 def last_day_of_month(year: int, month: int) -> int:
     """Return the last calendar day of the given month."""
@@ -114,11 +105,6 @@ def offer_total_cents(offer: "Offer") -> int:
 
 def program_fee_cents(offer: "Offer", rules: "CreditorRules") -> int:
     return rules.program_fee_total(offer.original_balance_cents)
-
-
-# ---------------------------------------------------------------------------
-# Data models
-# ---------------------------------------------------------------------------
 
 @dataclass
 class LedgerEntry:
@@ -251,11 +237,6 @@ class CreditorRules:
 
     def program_fee_total(self, original_balance_cents: int) -> int:
         return round_half_up(self.program_fee_pct * original_balance_cents)
-
-
-# ---------------------------------------------------------------------------
-# JSON loaders
-# ---------------------------------------------------------------------------
 
 def _parse_date(s: str) -> date:
     return date.fromisoformat(s)
