@@ -217,7 +217,11 @@ def _build_even_payments(offer_total: int, k: int, rules: CreditorRules) -> Opti
         floor = rules.floor_at(i + 1, token_pays)
         if p < floor:
             return None
-        if p == rules.min_payment_cents:
+        # Count a token-pay only if the payment equals the base minimum AND
+        # the applicable floor at this position (given current token_pays)
+        # is also the base minimum. This avoids counting payments that happen
+        # to equal `min_payment_cents` but whose floor was higher.
+        if p == rules.min_payment_cents and floor == rules.min_payment_cents:
             token_pays += 1
 
     return payments
@@ -239,6 +243,7 @@ def _build_balloon_payments(offer_total: int, k: int, rules: CreditorRules) -> O
     for i in range(k - 1):
         floor = rules.floor_at(i + 1, token_pays)
         payments.append(floor)
+        # Only treat this as a token-pay if the floor itself is the base min.
         if floor == rules.min_payment_cents:
             token_pays += 1
         running_sum += floor
@@ -357,7 +362,10 @@ def _build_staircase_payments(offer_total: int, k: int, rules: CreditorRules) ->
                 floor = rules.floor_at(payment_index, token_pays_check)
                 if level < floor:
                     return None
-                if level == rules.min_payment_cents:
+                # Only increment the token_pays_check when this payment is a
+                # true token pay: the payment equals the base min and the
+                # applicable floor equals the base min.
+                if level == rules.min_payment_cents and floor == rules.min_payment_cents:
                     token_pays_check += 1
                 payments.append(level)
 
