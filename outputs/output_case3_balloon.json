@@ -1,0 +1,49 @@
+{
+  "feasible": true,
+  "pay_shape_used": "balloon",
+  "schedule": [
+    {
+      "date": "2026-01-31",
+      "creditor_payment_cents": 2500,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 0,
+      "balance_cents": 7500
+    },
+    {
+      "date": "2026-02-28",
+      "creditor_payment_cents": 2500,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 0,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-03-31",
+      "creditor_payment_cents": 2500,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 0,
+      "balance_cents": 7500
+    },
+    {
+      "date": "2026-04-30",
+      "creditor_payment_cents": 2500,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 0,
+      "balance_cents": 15000
+    },
+    {
+      "date": "2026-05-31",
+      "creditor_payment_cents": 2500,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 0,
+      "balance_cents": 22500
+    },
+    {
+      "date": "2026-06-30",
+      "creditor_payment_cents": 17500,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 0,
+      "balance_cents": 15000
+    }
+  ],
+  "additional_funds": null
+}

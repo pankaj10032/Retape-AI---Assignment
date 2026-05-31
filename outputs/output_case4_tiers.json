@@ -1,0 +1,91 @@
+{
+  "feasible": true,
+  "pay_shape_used": "staircase",
+  "schedule": [
+    {
+      "date": "2026-01-31",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 4500,
+      "bank_fee_cents": 500,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-02-28",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 4500,
+      "bank_fee_cents": 500,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-03-31",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 4500,
+      "bank_fee_cents": 500,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-04-30",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 4500,
+      "bank_fee_cents": 500,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-05-31",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 4500,
+      "bank_fee_cents": 500,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-06-30",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 4500,
+      "bank_fee_cents": 500,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-07-31",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 3000,
+      "bank_fee_cents": 500,
+      "balance_cents": 1500
+    },
+    {
+      "date": "2026-08-31",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 500,
+      "balance_cents": 6000
+    },
+    {
+      "date": "2026-09-30",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 500,
+      "balance_cents": 10500
+    },
+    {
+      "date": "2026-10-31",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 500,
+      "balance_cents": 15000
+    },
+    {
+      "date": "2026-11-30",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 500,
+      "balance_cents": 19500
+    },
+    {
+      "date": "2026-12-31",
+      "creditor_payment_cents": 5000,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 500,
+      "balance_cents": 24000
+    }
+  ],
+  "additional_funds": null
+}

@@ -1,0 +1,19 @@
+{
+  "feasible": false,
+  "pay_shape_used": null,
+  "schedule": null,
+  "additional_funds": {
+    "lump_sum": {
+      "amount_cents": 10000,
+      "date": "2026-01-01",
+      "within_guardrail": true,
+      "reason": ""
+    },
+    "monthly_increment": {
+      "amount_cents": 2500,
+      "num_drafts": 5,
+      "within_guardrail": true,
+      "reason": ""
+    }
+  }
+}

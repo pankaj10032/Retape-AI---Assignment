@@ -133,19 +133,13 @@ down to `1` and pick the first feasible.
 
 ### Staircase (neither flag set)
 
-At most `max_segments` distinct payment levels. We enumerate all ways to
-partition `k` payments into at most `max_segments` constant segments. For each
-partition:
+We allow at most `max_segments` distinct payment levels. We look at every way to split the `k` payments into at most `max_segments` segments. For each split:
 
-1. Compute the minimum feasible constant value for each segment (respecting
-   floors, tiers, and the token-pay rule).
-2. Distribute any remaining `offer_total` across the **last** segment,
-   spreading extra cents to the final payments to preserve non-decreasing order.
-3. Validate the result against all constraints (exact sum, floors, token pays,
-   non-decreasing, distinct-level cap).
+1. We find the lowest possible constant value for each of the early segments. This keeps early creditor outlays small.
+2. For the final segment, we divide the remaining offer balance equally among the remaining payments. If there is a remainder, we distribute the extra cents to the latest payments. This ensures the payments are in ascending order and sum up exactly to the offer total.
+3. We run each candidate sequence through our floor and token pay checkers to make sure every rule is satisfied.
 
-We prefer the partition that minimizes the sum of early payments, because that
-frees the most cash for front-loaded fee collection.
+To get the best possible schedule for fee collection, we gather all valid shapes across all possible splits and sort them lexicographically. We choose the first one. This ensures we select the staircase schedule that keeps early payments as low as possible.
 
 ### Token pays & tiers interaction
 

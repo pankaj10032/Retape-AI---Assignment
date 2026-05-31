@@ -1,0 +1,49 @@
+{
+  "feasible": true,
+  "pay_shape_used": "even",
+  "schedule": [
+    {
+      "date": "2026-01-31",
+      "creditor_payment_cents": 8333,
+      "program_fee_cents": 10667,
+      "bank_fee_cents": 1000,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-02-28",
+      "creditor_payment_cents": 8333,
+      "program_fee_cents": 10667,
+      "bank_fee_cents": 1000,
+      "balance_cents": 0
+    },
+    {
+      "date": "2026-03-31",
+      "creditor_payment_cents": 8333,
+      "program_fee_cents": 8666,
+      "bank_fee_cents": 1000,
+      "balance_cents": 2001
+    },
+    {
+      "date": "2026-04-30",
+      "creditor_payment_cents": 8333,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 1000,
+      "balance_cents": 12668
+    },
+    {
+      "date": "2026-05-31",
+      "creditor_payment_cents": 8334,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 1000,
+      "balance_cents": 23334
+    },
+    {
+      "date": "2026-06-30",
+      "creditor_payment_cents": 8334,
+      "program_fee_cents": 0,
+      "bank_fee_cents": 1000,
+      "balance_cents": 34000
+    }
+  ],
+  "additional_funds": null
+}

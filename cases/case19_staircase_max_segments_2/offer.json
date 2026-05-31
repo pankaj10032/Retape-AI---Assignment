@@ -1,0 +1,7 @@
+{
+  "creditor": "StairCo",
+  "creditor_balance_cents": 20000,
+  "original_balance_cents": 20000,
+  "settlement_pct": 1.0,
+  "first_payment_date": "2026-01-31"
+}

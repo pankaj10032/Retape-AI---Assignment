@@ -334,43 +334,61 @@ def _build_staircase_payments(offer_total: int, k: int, rules: CreditorRules) ->
         if required < 0:
             return None
 
-        min_last = max(prev_level, min_above)
-        if required < min_last:
-            return None
-        if required == rules.min_payment_cents and not base_allowed:
-            return None
-        if required < rules.min_payment_cents:
-            return None
+        base_last = required // last_count
+        remainder_last = required - base_last * last_count
 
-        levels.append(required)
+        min_last = max(prev_level, min_above)
+        if base_last < min_last:
+            return None
+        if base_last < rules.min_payment_cents:
+            return None
+        if base_last == rules.min_payment_cents and not base_allowed:
+            return None
 
         payments: List[int] = []
         token_pays_check = 0
-        for count, level in zip(counts, levels):
+        
+        # Build first segments
+        for count, level in zip(counts[:-1], levels):
             for _ in range(count):
                 payment_index = len(payments) + 1
                 floor = rules.floor_at(payment_index, token_pays_check)
                 if level < floor:
                     return None
-                # Only increment the token_pays_check when this payment is a
-                # true token pay: the payment equals the base min and the
-                # applicable floor equals the base min.
                 if level == rules.min_payment_cents and floor == rules.min_payment_cents:
                     token_pays_check += 1
                 payments.append(level)
+
+        # Build last segment
+        last_payments = [base_last] * (last_count - remainder_last) + [base_last + 1] * remainder_last
+        for level in last_payments:
+            payment_index = len(payments) + 1
+            floor = rules.floor_at(payment_index, token_pays_check)
+            if level < floor:
+                return None
+            if level == rules.min_payment_cents and floor == rules.min_payment_cents:
+                token_pays_check += 1
+            payments.append(level)
 
         if len(payments) != k or sum(payments) != offer_total:
             return None
         return payments
 
-    best: Optional[List[int]] = None
+    candidates: List[List[int]] = []
     for segments in range(1, rules.max_segments + 1):
-        for counts in sorted(compositions(k, segments), key=lambda c: tuple([-x for x in c])):
+        for counts in compositions(k, segments):
             payments = build_for_counts(counts)
             if payments is not None:
-                return payments
+                candidates.append(payments)
 
-    return None
+    if not candidates:
+        return None
+
+    # Lexicographically sort candidate schedules.
+    # The lexicographically smallest schedule minimizes early creditor payments,
+    # which maximizes cash freed early for program-fee front-loading.
+    candidates.sort()
+    return candidates[0]
 
 
 def _schedule_program_fee(

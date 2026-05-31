@@ -1,0 +1,7 @@
+{
+  "creditor": "HorizonCo",
+  "creditor_balance_cents": 5000,
+  "original_balance_cents": 5000,
+  "settlement_pct": 1.0,
+  "first_payment_date": "2026-01-31"
+}
